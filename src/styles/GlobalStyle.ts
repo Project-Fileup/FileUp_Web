@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { disableDrag } from '@/styles/libStyle';
 
 const GlobalStyle = createGlobalStyle`
   * {
@@ -13,6 +14,10 @@ const GlobalStyle = createGlobalStyle`
     width: 100%;
     height: 100%;
     font-size: 62.5%;
+  }
+
+  img {
+    ${disableDrag};
   }
 `;
 
