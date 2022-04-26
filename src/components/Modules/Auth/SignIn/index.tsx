@@ -1,57 +1,48 @@
-import styled, { useTheme } from 'styled-components';
-import CancelAbleInput from '@/components/Common/Input/CancelAbleInput';
+import { useRouter } from 'next/router';
 import AuthTemplate from '@/components/Modules/Auth/AuthTemplate';
-import Flex from '@/components/Common/Layout/Flex';
-import Button from '@/components/Common/Button';
+import {
+  FormWrapper,
+  AuthInput,
+  AuthButton,
+  AccountText,
+} from '@/components/Modules/Auth/style';
 
 const SignIn = (): JSX.Element => {
-  const { color, fontSize } = useTheme();
+  const { push } = useRouter();
 
   return (
     <AuthTemplate>
-      <Flex
-        flexDirection='column'
-        gap='1.75rem'
-      >
-        <SignInInput
+      <FormWrapper>
+        <AuthInput
           type='text'
           name='id'
           placeholder='아이디를 입력하세요'
         />
 
-        <SignInInput
+        <AuthInput
           type='password'
           name='password'
           placeholder='비밀번호를 입력하세요'
         />
 
-        <Button
+        <AuthButton
           width='100%'
           height='40px'
-          fontSize={fontSize.NORMAL}
-          color={color.white}
-          backgroundColor={color.main}
           onClick={() => {}}
         >
           로그인
-        </Button>
+        </AuthButton>
 
-        <NoAccount>아이디가 없으신가요?</NoAccount>
-      </Flex>
+        <AccountText
+          onClick={() => push({
+            pathname: '/sign-up',
+          })}
+        >
+          아이디가 없으신가요?
+        </AccountText>
+      </FormWrapper>
     </AuthTemplate>
   );
 }
-
-const SignInInput = styled(CancelAbleInput)`
-  width: 100%;
-  padding: 0.75rem;
-  border-radius: 5px;
-  font-size: ${({ theme }) => theme.fontSize.NORMAL};
-`;
-
-const NoAccount = styled.p`
-  font-size: ${({ theme }) => theme.fontSize.SMALL};
-  cursor: pointer;
-`;
 
 export default SignIn;

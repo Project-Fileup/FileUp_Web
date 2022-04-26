@@ -54,9 +54,13 @@ const CancelAbleInput = (props: CancelAbleInputProps): JSX.Element => {
         onBlur={onBlur}
       />
 
-      <ResetInput
-        onClick={onReset}
-      />
+      {
+        // TODO: 데이터 state 연동시 아래 주석해제
+        // !isEmpty(props.value) &&
+        <ResetInput
+          onClick={onReset}
+        />
+      }
     </CancelAbleInputWrapper>
   );
 }

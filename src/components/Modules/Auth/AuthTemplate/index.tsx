@@ -8,6 +8,7 @@ type AuthTemplateProps = {
   children: ReactNode;
 }
 
+// TODO: 배경 이미지 추가
 const AuthTemplate = ({
   children,
 }: AuthTemplateProps): JSX.Element => {
@@ -25,8 +26,8 @@ const AuthTemplate = ({
           margin='0 0 2rem 0'
         >
           <Image
-            width='150px'
-            height='150px'
+            width='125px'
+            height='125px'
             src={icons.logo.SVG_LOGO}
             alt='FileUp'
           />
