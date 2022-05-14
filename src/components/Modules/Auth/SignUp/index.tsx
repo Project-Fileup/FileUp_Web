@@ -1,4 +1,5 @@
-import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { useTheme } from 'styled-components';
 import AuthTemplate from '@/components/Modules/Auth/AuthTemplate';
 import Flex from '@/components/Common/Layout/Flex';
 import {
@@ -9,17 +10,11 @@ import {
 } from '@/components/Modules/Auth/style';
 
 const SignUp = (): JSX.Element => {
-  const { push } = useRouter();
+  const { color } = useTheme();
 
   return (
     <AuthTemplate>
       <FormWrapper>
-        <AuthInput
-          type='text'
-          name='name'
-          placeholder='이름을 입력하세요'
-        />
-
         <AuthInput
           type='email'
           name='email'
@@ -41,37 +36,45 @@ const SignUp = (): JSX.Element => {
         <Flex
           width='100%'
           justifyContent='space-between'
-          alignItems='stretch'
-          gap='1rem'
         >
-          <AuthInput
-            type='text'
-            placeholder='이메일 인증코드'
-          />
-
           <AuthButton
-            height='auto'
+            height='40px'
             onClick={() => {}}
           >
-            인증
+            이전
+          </AuthButton>
+
+          <AuthButton
+            height='40px'
+            onClick={() => {}}
+          >
+            다음
           </AuthButton>
         </Flex>
 
-        <AuthButton
+        <Flex
           width='100%'
-          height='40px'
-          onClick={() => {}}
+          gap='2rem'
+          justifyContent='center'
         >
-          회원가입
-        </AuthButton>
+          <AccountText>FileUp 계정이 있으신가요?</AccountText>
 
-        <AccountText
-          onClick={() => push({
-            pathname: '/sign-in',
-          })}
-        >
-          계정이 있으신가요?
-        </AccountText>
+          <Link
+            href={{
+              pathname: '/sign-in',
+            }}
+            passHref
+            shallow
+          >
+            <a>
+              <AccountText
+                color={color.main}
+              >
+                로그인
+              </AccountText>
+            </a>
+          </Link>
+        </Flex>
       </FormWrapper>
     </AuthTemplate>
   );

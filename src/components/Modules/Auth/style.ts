@@ -4,7 +4,7 @@ import CancelAbleInput from '@/components/Common/Input/CancelAbleInput';
 import Button from '@/components/Common/Button';
 
 export const FormWrapper = styled(Flex)`
-  gap: 1.75rem;
+  gap: 2.5rem;
   flex-direction: column;
 `;
 
@@ -25,7 +25,7 @@ export const AuthButton = styled(Button)`
   background-color: ${({ theme }) => theme.color.main};
 `;
 
-export const AccountText = styled.p`
+export const AccountText = styled.p<{ color?: string; }>`
   font-size: ${({ theme }) => theme.fontSize.SMALL};
-  cursor: pointer;
+  color: ${({ color }) => color};
 `;
