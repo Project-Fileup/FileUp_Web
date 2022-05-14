@@ -8,6 +8,8 @@ import Document, {
   DocumentInitialProps,
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
+import { fontPath } from '@/assets/fonts';
+import fontFamilies from '@/styles/fontFamilies';
 
 class FileUpDocument extends Document<DocumentInitialProps> {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
@@ -76,6 +78,52 @@ class FileUpDocument extends Document<DocumentInitialProps> {
             name='referrer'
             content='no-referrer-when-downgrade'
           />
+
+          <link
+            rel='preload'
+            href={fontPath.pretendard.regular}
+            as='font'
+            type='font/woff2'
+            crossOrigin=''
+          />
+
+          <link
+            rel='preload'
+            href={fontPath.pretendard.black}
+            as='font'
+            type='font/woff2'
+            crossOrigin=''
+          />
+
+          <link
+            rel='preload'
+            href={fontPath.pretendard.bold}
+            as='font'
+            type='font/woff2'
+            crossOrigin=''
+          />
+
+          <link
+            rel='preload'
+            href={fontPath.pretendard.semiBold}
+            as='font'
+            type='font/woff2'
+            crossOrigin=''
+          />
+
+          <link
+            rel='preload'
+            href={fontPath.pretendard.medium}
+            as='font'
+            type='font/woff2'
+            crossOrigin=''
+          />
+
+          <style
+            dangerouslySetInnerHTML={{
+              __html: fontFamilies,
+            }}
+          ></style>
         </Head>
 
         <body>
