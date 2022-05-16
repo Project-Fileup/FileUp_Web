@@ -54,7 +54,7 @@ const SignUp = (): JSX.Element => {
 
         <Flex
           width='100%'
-          gap='2rem'
+          gap='1.5rem'
           justifyContent='center'
         >
           <AccountText>FileUp 계정이 있으신가요?</AccountText>

@@ -38,7 +38,7 @@ const SignIn = (): JSX.Element => {
         </AuthButton>
 
         <Flex
-          gap='2rem'
+          gap='1.5rem'
         >
           <AccountText>FileUp이 처음이신가요?</AccountText>
 
@@ -59,36 +59,48 @@ const SignIn = (): JSX.Element => {
           </Link>
         </Flex>
 
-        <div>
+        <Flex
+          width='100%'
+          gap='1rem'
+          justifyContent='space-between'
+        >
+          <TitleSideBorder></TitleSideBorder>
           <SocialLoginTitle>소셜 로그인</SocialLoginTitle>
+          <TitleSideBorder></TitleSideBorder>
+        </Flex>
 
-          <Flex
-            gap='2rem'
-          >
-            <AuthIcon
-              src={icons.auth.GOOGLE}
-              alt='구글 로그인'
-            />
+        <Flex
+          gap='2rem'
+        >
+          <AuthIcon
+            src={icons.auth.GOOGLE}
+            alt='구글 로그인'
+          />
 
-            <AuthIcon
-              src={icons.auth.FACEBOOK}
-              alt='페이스북 로그인'
-            />
-            
-            <AuthIcon
-              src={icons.auth.KAKAOTALK}
-              alt='카카오톡 로그인'
-            />
-          </Flex>
-        </div>
+          <AuthIcon
+            src={icons.auth.FACEBOOK}
+            alt='페이스북 로그인'
+          />
+          
+          <AuthIcon
+            src={icons.auth.KAKAOTALK}
+            alt='카카오톡 로그인'
+          />
+        </Flex>
       </FormWrapper>
     </AuthTemplate>
   );
 }
 
+const TitleSideBorder = styled.hr`
+  flex: 1;
+  height: 3px;
+  background-color: ${({ theme }) => theme.color.black};
+`;
+
 const SocialLoginTitle = styled.h3`
   text-align: center;
-  margin-bottom: 1.5rem;
+  font-family: ${({ theme }) => theme.font.pretendard.medium};
   font-size: ${({ theme }) => theme.fontSize.SMALL};
 `;
 

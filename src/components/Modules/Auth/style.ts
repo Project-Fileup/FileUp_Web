@@ -13,6 +13,7 @@ export const AuthInput = styled(CancelAbleInput)`
   padding: 1rem 1.25rem;
   border-radius: 5px;
   font-size: ${({ theme }) => theme.fontSize.NORMAL};
+  background-color: ${({ theme }) => theme.color.white};
 
   & input {
     padding: 0;
@@ -26,6 +27,7 @@ export const AuthButton = styled(Button)`
 `;
 
 export const AccountText = styled.p<{ color?: string; }>`
+  font-family: ${({ theme }) => theme.font.pretendard.medium};
   font-size: ${({ theme }) => theme.fontSize.SMALL};
   color: ${({ color }) => color};
 `;
