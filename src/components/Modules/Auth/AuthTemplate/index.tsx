@@ -14,7 +14,7 @@ const AuthTemplate = ({
   children,
 }: AuthTemplateProps): JSX.Element => {
   return (
-    <AuthTemplatewrapper>
+    <AuthTemplateWrapper>
       <AuthFormWrapper>
         <Flex
           alignItems='stretch'
@@ -40,11 +40,11 @@ const AuthTemplate = ({
           </RightPanelWrapper>
         </Flex>
       </AuthFormWrapper>
-    </AuthTemplatewrapper>
+    </AuthTemplateWrapper>
   );
 }
 
-const AuthTemplatewrapper = styled(Flex)`
+const AuthTemplateWrapper = styled(Flex)`
   width: 100%;
   height: 100%;
   justify-content: center;
@@ -52,6 +52,7 @@ const AuthTemplatewrapper = styled(Flex)`
 `;
 
 const AuthFormWrapper = styled.main`
+  max-width: 900px;
   border-radius: 5px;
   background-color: ${({ theme }) => theme.color.white};
 `;
@@ -66,7 +67,6 @@ const PanelImageWrapper = styled(Flex)`
 
 const AuthPanelImage = styled.img`
   width: 100%;
-  height: 430px;
   transform: rotate(-5deg);
 `;
 

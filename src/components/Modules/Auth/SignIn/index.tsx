@@ -1,19 +1,16 @@
-import Link from 'next/link';
 import Image from 'next/image';
-import styled, { useTheme } from 'styled-components';
+import styled from 'styled-components';
 import AuthTemplate from '@/components/Modules/Auth/AuthTemplate';
 import {
   FormWrapper,
   AuthInput,
   AuthButton,
-  AccountText,
+  SpaceLabel,
 } from '@/components/Modules/Auth/style';
 import Flex from '@/components/Common/Layout/Flex';
 import { icons } from '@/assets/icons';
 
 const SignIn = (): JSX.Element => {
-  const { color } = useTheme();
-
   return (
     <AuthTemplate>
       <FormWrapper>
@@ -37,27 +34,11 @@ const SignIn = (): JSX.Element => {
           로그인
         </AuthButton>
 
-        <Flex
-          gap='1.5rem'
-        >
-          <AccountText>FileUp이 처음이신가요?</AccountText>
-
-          <Link
-            href={{
-              pathname: '/sign-up',
-            }}
-            passHref
-            shallow
-          >
-            <a>
-              <AccountText
-                color={color.main}
-              >
-                회원가입
-              </AccountText>
-            </a>
-          </Link>
-        </Flex>
+        <SpaceLabel
+          commonText='FileUp이 처음이신가요?'
+          accentText='회원가입'
+          link='/sign-up'
+        />
 
         <Flex
           width='100%'

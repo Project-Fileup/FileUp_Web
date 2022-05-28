@@ -54,13 +54,10 @@ const CancelAbleInput = (props: CancelAbleInputProps): JSX.Element => {
         onBlur={onBlur}
       />
 
-      {
-        // TODO: 데이터 state 연동시 아래 주석해제
-        // !isEmpty(props.value) &&
-        <ResetInput
-          onClick={onReset}
-        />
-      }
+      <ResetInput
+        isEmpty={isEmpty(props.value)}
+        onClick={onReset}
+      />
     </CancelAbleInputWrapper>
   );
 }
@@ -79,10 +76,11 @@ const CancelAbleInputWrapper = styled.div<CancelAbleInputWrapperProps>`
   border: ${({ theme }) => `1px solid ${theme.color.main}`};
 `;
 
-const ResetInput = styled(CgClose)`
+const ResetInput = styled(CgClose)<{ isEmpty: boolean; }>`
   color: ${({ theme }) => theme.color.main};
   font-size: ${({ theme }) => theme.fontSize.BIG};
   cursor: pointer;
+  visibility: ${({ isEmpty }) => isEmpty ? 'hidden' : 'visibility'};
 `;
 
 export default memo(CancelAbleInput);
