@@ -9,6 +9,7 @@ import Document, {
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
 import { fontPath } from '@/assets/fonts';
+import { icons } from '@/assets/icons';
 import fontFamilies from '@/styles/fontFamilies';
 
 class FileUpDocument extends Document<DocumentInitialProps> {
@@ -117,6 +118,42 @@ class FileUpDocument extends Document<DocumentInitialProps> {
             as='font'
             type='font/woff2'
             crossOrigin=''
+          />
+
+          <link
+            rel='icon'
+            type='image/svg'
+            href={icons.logo.SVG_LOGO}
+          />
+
+          <meta
+            property='og:type'
+            content='website'
+          />
+
+          <meta
+            property='og:locale'
+            content='ko_KR'
+          />
+
+          <meta
+            property='og:site_name'
+            content='FileUp'
+          />
+
+          <meta
+            property='article:media_name'
+            content='FileUp'
+          />
+
+          <meta
+            name='keywords'
+            content='FileUp'
+          />
+
+          <meta
+            name='author'
+            content='FileUp'
           />
 
           <style
