@@ -13,12 +13,14 @@ type EnterInfoProps = {
   signUpRequest: SignUpDto;
   changeSignUpRequest: (e: ChangeEvent<HTMLInputElement>) => void;
   requestEmailCode: (passPage: boolean) => Promise<void>;
+  emailLoading: boolean;
 }
 
 const EnterInfo = ({
   signUpRequest,
   changeSignUpRequest,
   requestEmailCode,
+  emailLoading,
 }: EnterInfoProps): JSX.Element => {
   return (
     <AuthTemplate>
@@ -28,6 +30,7 @@ const EnterInfo = ({
           name='email'
           value={signUpRequest.email}
           onChange={changeSignUpRequest}
+          onEnter={() => requestEmailCode(true)}
           placeholder='이메일을 입력하세요'
         />
 
@@ -36,6 +39,7 @@ const EnterInfo = ({
           name='password'
           value={signUpRequest.password}
           onChange={changeSignUpRequest}
+          onEnter={() => requestEmailCode(true)}
           placeholder='비밀번호를 입력하세요'
         />
 
@@ -44,6 +48,7 @@ const EnterInfo = ({
           name='rePassword'
           value={signUpRequest.rePassword}
           onChange={changeSignUpRequest}
+          onEnter={() => requestEmailCode(true)}
           placeholder='비밀번호를 재입력하세요'
         />
 
@@ -54,6 +59,7 @@ const EnterInfo = ({
           <AuthButton
             height='40px'
             onClick={() => requestEmailCode(true)}
+            isLoading={emailLoading}
           >
             다음
           </AuthButton>

@@ -10,6 +10,8 @@ const SignUp = (): JSX.Element => {
     changeSignUpRequest,
     requestEmailCode,
     requestSignUp,
+    signUpLoading,
+    emailLoading,
   } = useSignUp();
 
   switch (page) {
@@ -19,6 +21,7 @@ const SignUp = (): JSX.Element => {
           signUpRequest={signUpRequest}
           changeSignUpRequest={changeSignUpRequest}
           requestEmailCode={requestEmailCode}
+          emailLoading={emailLoading}
         />
       );
 
@@ -30,6 +33,8 @@ const SignUp = (): JSX.Element => {
           signUpRequest={signUpRequest}
           changeSignUpRequest={changeSignUpRequest}
           requestSignUp={requestSignUp}
+          emailLoading={emailLoading}
+          signUpLoading={signUpLoading}
         />
       );
 
