@@ -1,9 +1,11 @@
 import {
+  useCallback,
   InputHTMLAttributes,
   Dispatch,
   SetStateAction,
   RefObject,
   memo,
+  KeyboardEvent,
 } from 'react';
 import styled from 'styled-components';
 
@@ -22,6 +24,7 @@ export type InputProps = InputHTMLAttributes<HTMLInputElement> &
   {
     setValue?: Dispatch<SetStateAction<string>>;
     inputRef?: RefObject<HTMLInputElement>;
+    onEnter?: () => void;
   };
 
 const Input = (props: InputProps): JSX.Element => {
@@ -29,7 +32,18 @@ const Input = (props: InputProps): JSX.Element => {
     inputRef,
     margin,
     className,
+    onEnter,
   } = props;
+
+  const handleEnter = useCallback((e: KeyboardEvent<HTMLInputElement>): void => {
+    if (e.key !== 'Enter') {
+      return;
+    }
+
+    if (typeof onEnter === 'function') {
+      onEnter();
+    }
+  }, [onEnter]);
 
   return (
     <InputWrapper
@@ -39,6 +53,7 @@ const Input = (props: InputProps): JSX.Element => {
         className={className}
         ref={inputRef}
         {...props}
+        onKeyDown={handleEnter}
       />
     </InputWrapper>
   );
