@@ -1,5 +1,8 @@
 import Image from 'next/image';
 import styled from 'styled-components';
+import { icons } from '@/assets/icons';
+import useSignIn from '@/hooks/auth/useSignIn';
+import Flex from '@/components/Common/Layout/Flex';
 import AuthTemplate from '@/components/Modules/Auth/AuthTemplate';
 import {
   FormWrapper,
@@ -7,29 +10,41 @@ import {
   AuthButton,
   SpaceLabel,
 } from '@/components/Modules/Auth/style';
-import Flex from '@/components/Common/Layout/Flex';
-import { icons } from '@/assets/icons';
 
 const SignIn = (): JSX.Element => {
+  const {
+    signInLoading,
+    signInRequest,
+    changeSignInRequest,
+    requestSignIn,
+  } = useSignIn();
+
   return (
     <AuthTemplate>
       <FormWrapper>
         <AuthInput
-          type='text'
-          name='id'
-          placeholder='아이디를 입력하세요'
+          type='email'
+          name='email'
+          value={signInRequest.email}
+          onChange={changeSignInRequest}
+          onEnter={requestSignIn}
+          placeholder='이메일을 입력하세요'
         />
 
         <AuthInput
           type='password'
           name='password'
+          value={signInRequest.password}
+          onChange={changeSignInRequest}
+          onEnter={requestSignIn}
           placeholder='비밀번호를 입력하세요'
         />
 
         <AuthButton
           width='100%'
           height='40px'
-          onClick={() => {}}
+          isLoading={signInLoading}
+          onClick={requestSignIn}
         >
           로그인
         </AuthButton>

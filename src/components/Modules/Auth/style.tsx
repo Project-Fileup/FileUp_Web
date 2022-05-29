@@ -1,4 +1,4 @@
-import { useCallback, MouseEvent } from 'react';
+import { useCallback, MouseEvent, ReactNode } from 'react';
 import Link from 'next/link';
 import styled from 'styled-components';
 import { palette } from '@/styles/palette';
@@ -38,7 +38,7 @@ export const AccountText = styled.p<{ color?: string; }>`
 
 type SpaceLabelProps = {
   commonText: string;
-  accentText: string;
+  accentText: ReactNode;
   link: string;
   onClick?: (e: MouseEvent) => void | Promise<void>;
 }

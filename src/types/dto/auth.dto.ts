@@ -7,3 +7,8 @@ export type SignUpDto = EmailCodeDto & {
   password: string;
   rePassword?: string;
 }
+
+export type SignInDto = {
+  email: string;
+  password: string;
+}
