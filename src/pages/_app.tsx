@@ -1,25 +1,61 @@
+import { useState } from 'react';
 import { NextComponentType } from 'next';
-import {
+import App, {
   AppContext,
   AppInitialProps,
   AppProps,
 } from 'next/app';
+import {
+  QueryClient,
+  QueryClientProvider,
+  Hydrate,
+} from '@tanstack/react-query';
 import GlobalStyle from '@/styles/GlobalStyle';
-import StyleProvider from '@/components/Common/StyleProvider';
+import { wrapper } from '@/stores/nextStore';
+import StyleProvider from '@/components/Providers/StyleProvider';
 
-type CustomAppComponent = NextComponentType<AppContext, AppInitialProps, AppProps>;
+type MyAppProps = AppProps & {};
 
-const FileUpApp: CustomAppComponent = ({
+type CustomAppComponent = NextComponentType<AppContext, AppInitialProps, MyAppProps>;
+
+const MyApp: CustomAppComponent = ({
   Component,
   pageProps,
 }) => {
+  const [queryClient] = useState<QueryClient>(() => new QueryClient({
+    defaultOptions: {
+      queries: {
+        staleTime: Infinity,
+        cacheTime: Infinity,
+        refetchOnWindowFocus: false,
+        retry: false,
+      },
+    },
+  }));
+
+  const dehydrateState = pageProps?.dehydrateState;
+
   return (
-    <StyleProvider>
-      <Component {...pageProps} />
-    
-      <GlobalStyle />
-    </StyleProvider>
+    <QueryClientProvider
+      client={queryClient}
+    >
+      <Hydrate
+        state={dehydrateState}
+      >
+        <StyleProvider>
+          <GlobalStyle />
+
+          <Component
+            {...pageProps}
+          />
+        </StyleProvider>
+      </Hydrate>
+    </QueryClientProvider>
   );
 }
 
-export default FileUpApp;
+MyApp.getInitialProps = async (context) => {
+  return await App.getInitialProps(context);
+}
+
+export default wrapper.withRedux(MyApp);

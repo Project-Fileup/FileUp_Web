@@ -5,7 +5,7 @@ export const deviceSizes = {
   smallTablet: '650px',
   tablet: '768px',
   mediumTablet: '850px',
-  smallLabtop: '950px',
+  smallLaptop: '950px',
   laptop: '1024px',
   mediumLaptop: '1200px',
 } as const;
@@ -19,3 +19,17 @@ export const device: Device = Object.entries(deviceSizes).reduce((device, [devic
 
   return device;
 }, {} as Device);
+
+export const constantSafeArea = {
+  top: 'constant(safe-area-inset-top)',
+  left: 'constant(safe-area-inset-left)',
+  right: 'constant(safe-area-inset-right)',
+  bottom: 'constant(safe-area-inset-bottom)',
+} as const;
+
+export const envSafeArea = {
+  top: 'env(safe-area-inset-top)',
+  left: 'env(safe-area-inset-left)',
+  right: 'env(safe-area-inset-right)',
+  bottom: 'env(safe-area-inset-bottom)',
+} as const;

@@ -1,33 +1,37 @@
-import { createGlobalStyle } from 'styled-components';
-import { disableDrag } from '@/styles/libStyle';
-import { styleReset } from '@/styles/reset';
+import { createGlobalStyle} from 'styled-components';
+import reset from './reset';
+import {
+  lightTheme,
+  lightThemeVariables,
+} from './theme';
 
 const GlobalStyle = createGlobalStyle`
-  ${styleReset};
+  ${reset};
 
   * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: ${({ theme }) => theme.font.pretendard.regular};
+    font-family: ${({ theme }) => theme.fontFamily.pretendard.REGULAR};
   }
 
   html,
   body,
-  #__next {
+  #_next {
     width: 100%;
-    height: 100vh;
     min-height: 100vh;
     font-size: 62.5%;
+  }
+
+  html {
+    ${lightThemeVariables};
+    color: ${lightTheme.contrast};
+    background-color: ${lightTheme.theme};
   }
 
   a {
     color: inherit;
     text-decoration: none;
-  }
-
-  img {
-    ${disableDrag};
   }
 
   input::-webkit-outer-spin-button,
@@ -36,7 +40,7 @@ const GlobalStyle = createGlobalStyle`
     margin: 0;
   }
 
-  /* Firefox */
+  // Firefox
   input[type=number] {
     -moz-appearance: textfield;
   }

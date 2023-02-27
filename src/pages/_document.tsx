@@ -1,4 +1,3 @@
-import { ReactFragment } from 'react';
 import Document, {
   Html,
   Head,
@@ -8,11 +7,10 @@ import Document, {
   DocumentInitialProps,
 } from 'next/document';
 import { ServerStyleSheet } from 'styled-components';
-import { fontPath } from '@/assets/fonts';
-import { icons } from '@/assets/icons';
-import fontFamilies from '@/styles/fontFamilies';
+import { fontPaths } from '@/assets/fonts';
+import fontFamilies from '@/styles/fontStyle';
 
-class FileUpDocument extends Document<DocumentInitialProps> {
+class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
     const sheet: ServerStyleSheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
@@ -27,18 +25,16 @@ class FileUpDocument extends Document<DocumentInitialProps> {
         });
       };
 
-      const initialProps = await Document.getInitialProps(ctx);
-
-      const styleElement = ((
-        <>
-          {initialProps.styles}
-          {sheet.getStyleElement()}
-        </>
-      ) as unknown) as ReactFragment;
+      const initialProps: DocumentInitialProps = await Document.getInitialProps(ctx);
 
       return {
         ...initialProps,
-        styles: styleElement,
+        styles: [
+          <>
+            {initialProps.styles}
+            {sheet.getStyleElement()}
+          </>
+        ],
       };
     } finally {
       sheet.seal();
@@ -52,27 +48,18 @@ class FileUpDocument extends Document<DocumentInitialProps> {
       >
         <Head>
           <meta
-            charSet='utf-8'
+            httpEquiv='Content-Type'
+            content='text/html; charset=utf-8'
           />
 
           <meta
-            httpEquiv='cache-control'
-            content='no-cache'
+            httpEquiv='Content-Type'
+            content='text/xml; charset=utf-8'
           />
 
           <meta
-            httpEquiv='expires'
-            content='0'
-          />
-
-          <meta
-            httpEquiv='pragma'
-            content='no-cache'
-          />
-
-          <meta
-            name='theme-color'
-            content='#000000'
+            httpEquiv='X-UA-Compatible'
+            content='IE=edge'
           />
 
           <meta
@@ -82,7 +69,7 @@ class FileUpDocument extends Document<DocumentInitialProps> {
 
           <link
             rel='preload'
-            href={fontPath.pretendard.regular}
+            href={fontPaths.pretendard.REGULAR}
             as='font'
             type='font/woff2'
             crossOrigin=''
@@ -90,7 +77,7 @@ class FileUpDocument extends Document<DocumentInitialProps> {
 
           <link
             rel='preload'
-            href={fontPath.pretendard.black}
+            href={fontPaths.pretendard.BOLD}
             as='font'
             type='font/woff2'
             crossOrigin=''
@@ -98,7 +85,7 @@ class FileUpDocument extends Document<DocumentInitialProps> {
 
           <link
             rel='preload'
-            href={fontPath.pretendard.bold}
+            href={fontPaths.pretendard.SEMI_BOLD}
             as='font'
             type='font/woff2'
             crossOrigin=''
@@ -106,54 +93,10 @@ class FileUpDocument extends Document<DocumentInitialProps> {
 
           <link
             rel='preload'
-            href={fontPath.pretendard.semiBold}
+            href={fontPaths.pretendard.MEDIUM}
             as='font'
             type='font/woff2'
             crossOrigin=''
-          />
-
-          <link
-            rel='preload'
-            href={fontPath.pretendard.medium}
-            as='font'
-            type='font/woff2'
-            crossOrigin=''
-          />
-
-          <link
-            rel='icon'
-            type='image/svg'
-            href={icons.logo.SVG_LOGO}
-          />
-
-          <meta
-            property='og:type'
-            content='website'
-          />
-
-          <meta
-            property='og:locale'
-            content='ko_KR'
-          />
-
-          <meta
-            property='og:site_name'
-            content='FileUp'
-          />
-
-          <meta
-            property='article:media_name'
-            content='FileUp'
-          />
-
-          <meta
-            name='keywords'
-            content='FileUp'
-          />
-
-          <meta
-            name='author'
-            content='FileUp'
           />
 
           <style
@@ -166,12 +109,10 @@ class FileUpDocument extends Document<DocumentInitialProps> {
         <body>
           <Main />
           <NextScript />
-
-          <div id='modal-portal'></div>
         </body>
       </Html>
     );
   }
 }
 
-export default FileUpDocument;
+export default MyDocument;

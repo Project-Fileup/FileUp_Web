@@ -1,12 +1,26 @@
-/** @type {import('next').NextConfig} */
+const withBundleAnalyzer = require('@next/bundle-analyzer')({
+  enabled: process.env.ANALYZE === 'true',
+});
 
-module.exports = {
+const withPlugins = require('next-compose-plugins');
+
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   reactStrictMode: true,
-  optimizeFonts: true,
   swcMinify: true,
-  assetPrefix: process.env.NEXT_PUBLIC_ASSET_PREFIX || '',
+  optimizeFonts: true,
+  poweredByHeader: false,
+
+  compiler: {
+    styledComponents: true,
+  },
 
   experimental: {
     scrollRestoration: true,
+    esmExternals: true,
   },
 };
+
+module.exports = withPlugins([
+  withBundleAnalyzer,
+], nextConfig);

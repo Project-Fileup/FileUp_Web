@@ -1,44 +1,36 @@
 import {
-  font,
-  fontPath,
+  fonts,
+  fontPaths,
 } from '@/assets/fonts';
 
 const fontFamilies = `
   @font-face {
-    src: url(${fontPath.pretendard.regular}) format('woff2');
-    font-family: ${font.pretendard.regular};
+    src: url(${fontPaths.pretendard.REGULAR}) format('woff2');
+    font-family: ${fonts.pretendard.REGULAR};
     font-style: normal;
     font-weight: normal;
     font-display: swap;
   }
 
   @font-face {
-    src: url(${fontPath.pretendard.medium}) format('woff2');
-    font-family: ${font.pretendard.medium};
+    src: url(${fontPaths.pretendard.MEDIUM}) format('woff2');
+    font-family: ${fonts.pretendard.MEDIUM};
     font-style: normal;
     font-weight: normal;
     font-display: swap;
   }
 
   @font-face {
-    src: url(${fontPath.pretendard.bold}) format('woff2');
-    font-family: ${font.pretendard.bold};
+    src: url(${fontPaths.pretendard.BOLD}) format('woff2');
+    font-family: ${fonts.pretendard.BOLD};
     font-style: normal;
     font-weight: normal;
     font-display: swap;
   }
 
   @font-face {
-    src: url(${fontPath.pretendard.semiBold}) format('woff2');
-    font-family: ${font.pretendard.semiBold};
-    font-style: normal;
-    font-weight: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    src: url(${fontPath.pretendard.black}) format('woff2');
-    font-family: ${font.pretendard.black};
+    src: url(${fontPaths.pretendard.SEMI_BOLD}) format('woff2');
+    font-family: ${fonts.pretendard.SEMI_BOLD};
     font-style: normal;
     font-weight: normal;
     font-display: swap;

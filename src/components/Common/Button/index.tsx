@@ -1,101 +1,86 @@
 import {
-  useCallback,
-  ReactNode,
-  CSSProperties,
-  ButtonHTMLAttributes,
   MouseEvent,
+  RefObject,
+  ButtonHTMLAttributes,
 } from 'react';
-import styled from 'styled-components';
-import throttle from '@/utils/timer/throttle';
-import { palette } from '@/styles/palette';
-import { disableDrag } from '@/styles/libStyle';
+import styled, { FlattenSimpleInterpolation } from 'styled-components';
+import {
+  Cursor,
+  JustifyContent,
+  Position,
+  Visibility,
+} from '@/types/style';
+import { fontSize as fontSizeStyle } from '@/styles/fontSize';
+import { cssPalette } from '@/styles/theme';
+import { disableDrag } from '@/styles/utils';
 import Spinner from '../Spinner';
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
+type ButtonStyleProps = {
   width?: string;
   height?: string;
   margin?: string;
   padding?: string;
+  letterSpacing?: string;
   fontSize?: string;
-  fontWeight?: 'light' | 'medium' | 'bold';
   fontFamily?: string;
-  enableThrottle?: boolean;
-  onClick: (e: MouseEvent) => void;
   backgroundColor?: string;
+  opacity?: string;
   color?: string;
   spinnerColor?: string;
-  children: ReactNode;
-  isLoading?: boolean;
-  isHidden?: boolean;
-  position?: 'absolute' | 'relative' | 'fixed' | 'static';
+  position?: Position;
   flex?: number;
-  justifyContent?: 'flex-start' | 'center' | 'flex-end';
+  gap?: string;
+  justifyContent?: JustifyContent;
   border?: string;
   borderRadius?: string;
+  visibility?: Visibility;
   boxShadow?: string;
-  cursor?: 'pointer' | 'default';
-  style?: CSSProperties;
+  cursor?: Cursor;
+  hover?: FlattenSimpleInterpolation;
 }
 
+type ButtonOwnProps = {
+  className?: string;
+  isLoading: boolean;
+  buttonRef?: RefObject<HTMLButtonElement>;
+}
+
+type ButtonProps = ButtonStyleProps &
+  ButtonOwnProps &
+  ButtonHTMLAttributes<HTMLButtonElement>
+
 const Button = ({
-  width = '130px',
-  height = '30px',
-  margin = '0 0 0 0',
-  padding = '0 0 0 0',
-  fontSize = '12px',
-  fontWeight = 'medium',
-  fontFamily,
-  enableThrottle = false,
-  onClick,
-  backgroundColor,
-  color,
-  spinnerColor = 'white',
-  children,
-  position = 'static',
-  flex,
+  fontSize = fontSizeStyle.TINY,
+  spinnerColor = cssPalette.white,
   justifyContent = 'center',
   isLoading = false,
-  isHidden = false,
   border = 'none',
   borderRadius = '5px',
-  boxShadow,
   cursor = 'pointer',
-  style,
+  buttonRef,
   className,
+  onClick,
+  children,
+  ...props
 }: ButtonProps): JSX.Element => {
-  const handleClick = useCallback((e: MouseEvent): void => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    if (isLoading) {
+  const handleClick = (e: MouseEvent<HTMLButtonElement>): void => {
+    if (typeof onClick !== 'function' || isLoading) {
       return;
     }
 
     onClick(e);
-  }, [isLoading, onClick]);
+  }
 
   return (
     <ButtonWrapper
+      ref={buttonRef}
       className={className}
-      width={width}
-      height={height}
-      padding={padding}
-      margin={margin}
-      backgroundColor={backgroundColor}
-      color={color}
-      fontSize={fontSize}
-      fontWeight={fontWeight}
-      fontFamily={fontFamily}
-      isHidden={isHidden}
-      onClick={enableThrottle ? throttle(handleClick, 500) : handleClick}
-      position={position}
-      flex={flex}
+      onClick={handleClick}
       justifyContent={justifyContent}
       border={border}
       borderRadius={borderRadius}
-      boxShadow={boxShadow}
       cursor={cursor}
-      style={style}
+      {...props}
     >
       {
         isLoading ?
@@ -105,13 +90,15 @@ const Button = ({
           strokeWidth={3}
           color={spinnerColor}
           secondaryColor={spinnerColor}
-        /> : children
+        />
+        :
+        children
       }
     </ButtonWrapper>
   );
 };
 
-const ButtonWrapper = styled.button<ButtonProps>`
+const ButtonWrapper = styled.button<ButtonStyleProps>`
   width: ${({ width }) => width};
   height: ${({ height }) => height};
   margin: ${({ margin }) => margin};
@@ -120,20 +107,28 @@ const ButtonWrapper = styled.button<ButtonProps>`
   border: ${({ border }) =>
     border === 'none' ? 'none' : `1px solid ${border}`};
   outline: none;
+  opacity: ${({ opacity }) => opacity};
+  letter-spacing: ${({ letterSpacing }) => letterSpacing};
   background-color: ${({ backgroundColor }) => backgroundColor};
   border-radius: ${({ borderRadius }) => borderRadius};
   position: ${({ position }) => position};
   display: flex;
+  gap: ${({ gap }) => gap};
   flex: ${({ flex }) => flex};
   align-items: center;
   justify-content: ${({ justifyContent }) => justifyContent};
+  visibility: ${({ visibility }) => visibility};
   font-size: ${({ fontSize }) => fontSize};
-  font-weight: ${({ fontWeight }) => fontWeight};
   font-family: ${({ fontFamily }) => fontFamily};
-  visibility: ${({ isHidden }) => (isHidden ? 'hidden' : 'visible')};
   box-shadow: ${({ boxShadow }) => boxShadow};
   ${disableDrag};
   cursor: ${({ cursor }) => cursor};
+
+  ${({ theme }) => theme.media.hoverable} {
+    &:hover {
+      ${({ hover }) => hover};
+    }
+  };
 `;
 
 export default Button;

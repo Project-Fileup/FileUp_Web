@@ -1,5 +1,5 @@
 import { NextPage } from 'next';
-import SignUp from '@/components/Modules/Auth/SignUp';
+// import SignUp from '@/components/Modules/Auth/SignUp';
 import Helmet from '@/components/Common/Helmet';
 
 const SignUpPage: NextPage = () => {
@@ -9,7 +9,7 @@ const SignUpPage: NextPage = () => {
         title='회원가입 | FileUp'
       />
 
-      <SignUp />
+      <div></div>
     </>
   );
 }

@@ -1,17 +1,32 @@
-import jsCookie from 'js-cookie';
+import { CookieSerializeOptions } from 'cookie';
+import {
+  getCookie,
+  setCookie,
+  deleteCookie,
+  CookieValueTypes,
+} from 'cookies-next';
+import { ServerResponse, IncomingMessage } from 'http';
 
-const cookie = {
-  get: (key: string): string | undefined => {
-    return jsCookie.get(key);
-  },
-
-  set: (key: string, value: string): void => {
-    jsCookie.set(key, value);
-  },
-
-  remove: (key: string): void => {
-    jsCookie.remove(key);
-  },
+export type CookieOption = CookieSerializeOptions & {
+  res?: ServerResponse;
+  req?: IncomingMessage & {
+    cookies?: Record<string, string> |
+      Partial<Record<string, string>>;
+  };
 }
 
-export default cookie;
+class Cookie {
+  set<T>(key: string, data: T, options?: CookieOption): void {
+    setCookie(key, data, options);
+  }
+
+  get(key: string): CookieValueTypes {
+    return getCookie(key);
+  }
+
+  delete(key: string): void {
+    deleteCookie(key);
+  }
+}
+
+export default new Cookie();

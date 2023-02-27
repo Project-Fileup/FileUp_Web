@@ -1,13 +1,12 @@
 import { css } from 'styled-components';
-import { font } from '@/assets/fonts';
 
-export const styleReset = css`
+const reset = css`
   html, body, div, span, applet, object, iframe,
   h1, h2, h3, h4, h5, h6, p, blockquote, pre,
   a, abbr, acronym, address, big, cite, code,
   del, dfn, em, img, ins, kbd, q, s, samp,
-  small, strike, sub, sup, tt, var,
-  u, i, center,
+  small, strike, strong, sub, sup, tt, var,
+  b, u, i, center,
   dl, dt, dd, ol, ul, li,
   fieldset, form, label, legend,
   table, caption, tbody, tfoot, thead, tr, th, td,
@@ -18,33 +17,24 @@ export const styleReset = css`
     margin: 0;
     padding: 0;
     border: 0;
-    font-size: 100%;
-    font-weight: normal;
     vertical-align: baseline;
-  }
-
-  select, button {
-    color: black;
   }
 
   article, aside, details, figcaption, figure,
   footer, header, hgroup, menu, nav, section {
     display: block;
   }
+
   body {
     line-height: 1;
   }
+
+  ol, ul {
+    list-style: none;
+  }
+
   blockquote, q {
     quotes: none;
-  }
-
-  b, strong {
-    font-weight: normal;
-    font-family: ${font.pretendard.bold};
-  }
-
-  ul, ol {
-    list-style: inside;
   }
 
   blockquote:before, blockquote:after,
@@ -58,3 +48,5 @@ export const styleReset = css`
     border-spacing: 0;
   }
 `;
+
+export default reset;
