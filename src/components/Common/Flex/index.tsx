@@ -16,7 +16,10 @@ import {
 type FlexStyleProps = {
   width?: string;
   maxWidth?: string;
+  minWidth?: string;
   height?: string;
+  maxHeight?: string;
+  minHeight?: string;
   flex?: string;
   gap?: string;
   flexDirection?: FlexDirection;
@@ -26,6 +29,8 @@ type FlexStyleProps = {
   position?: Position;
   overflow?: string;
   border?: CustomBorder;
+  borderRadius?: string;
+  backgroundColor?: string;
   margin?: string;
   padding?: string;
   cursor?: Cursor;
@@ -64,8 +69,11 @@ const Flex = <T extends AbleElementType>({
 
 const FlexContainer = styled.div<FlexStyleProps>`
   width: ${({ width }) => width};
+  min-width: ${({ minWidth }) => minWidth};
   max-width: ${({ maxWidth }) => maxWidth};
   height: ${({ height }) => height};
+  min-height: ${({ minHeight }) => minHeight};
+  max-height: ${({ maxHeight }) => maxHeight};
   position: ${({ position }) => position};
   display: flex;
   flex-direction: ${({ flexDirection }) => flexDirection};
@@ -75,6 +83,8 @@ const FlexContainer = styled.div<FlexStyleProps>`
   flex: ${({ flex }) => flex};
   flex-wrap: ${({ flexWrap }) => flexWrap};
   overflow: ${({ overflow }) => overflow};
+  background-color: ${({ backgroundColor }) => backgroundColor};
+  border-radius: ${({ borderRadius }) => borderRadius};
   border: ${({ border }) => border?.all};
   border-top: ${({ border }) => border?.top};
   border-left: ${({ border }) => border?.left};

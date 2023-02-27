@@ -54,7 +54,23 @@ export const palette = {
   orange800: '#ef6c00',
   orange900: '#e65100',
 
+  main50: '#EBF0F8',
+  main100: '#CDDAEF',
+  main200: '#9fb4d7',
+  main300: '#8BA8D9',
+  main400: '#7295D0',
+  main500: '#5982C8',
+  main600: '#517AC2',
+  main700: '#486FBB',
+  main800: '#3E65B4',
+  main900: '#2E52A7',
+
   white: '#f2f2f2',
   black: '#2c2c2c',
   main: '#5982c8',
+
+  google: '#ffffff',
+  kakao: '#fee500',
+  naver: '#03c75a',
+  apple: '#000000',
 } as const;

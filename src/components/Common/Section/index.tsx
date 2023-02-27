@@ -7,8 +7,10 @@ import { CustomBorder, Overflow } from '@/types/style';
 
 type SectionStyleProps = {
   width?: string;
+  minWidth?: string;
   maxWidth?: string;
   height?: string;
+  minHeight?: string;
   maxHeight?: string;
   margin?: string;
   padding?: string;
@@ -21,7 +23,7 @@ type SectionStyleProps = {
   hover?: FlattenSimpleInterpolation;
 }
 
-type AbleElementType = 'div' | 'section' | 'main' | 'article' | 'aside' | 'footer' | 'header';
+type AbleElementType = 'div' | 'section' | 'main' | 'article' | 'aside' | 'footer' | 'header' |'a';
 
 type SectionOwnProps<T extends AbleElementType> = {
   tagName: T | undefined;
@@ -54,8 +56,10 @@ const Section = <T extends AbleElementType>({
 
 const CustomSection = styled.div<SectionStyleProps>`
   width: ${({ width }) => width};
+  min-width: ${({ minWidth }) => minWidth};
   max-width: ${({ maxWidth }) => maxWidth};
   height: ${({ height }) => height};
+  min-height: ${({ minHeight }) => minHeight};
   max-height: ${({ maxHeight }) => maxHeight};
   margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};

@@ -7,7 +7,7 @@ const withPlugins = require('next-compose-plugins');
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
+  swcMinify: false,
   optimizeFonts: true,
   poweredByHeader: false,
 

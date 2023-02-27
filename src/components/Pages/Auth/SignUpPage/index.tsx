@@ -3,22 +3,22 @@ import AuthTemplate from '@/components/Modules/Auth/AuthTemplate';
 import SocialPlatforms from '@/components/Modules/Auth/SocialPlatforms';
 import Helmet from '@/components/Common/Helmet';
 
-const SignInPage: NextPage = () => {
+const SignUpPage: NextPage = () => {
   return (
     <>
       <Helmet
-        title='로그인'
+        title='회원가입'
       />
 
       <AuthTemplate
-        type='sign-in'
+        type='sign-up'
       >
         <SocialPlatforms
-          type='sign-in'
+          type='sign-up'
         />
       </AuthTemplate>
     </>
   );
 }
 
-export default SignInPage;
+export default SignUpPage;

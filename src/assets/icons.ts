@@ -7,8 +7,9 @@ export const icons = {
   },
 
   auth: {
-    FACEBOOK: generateStaticPath('/icons/auth/facebook.png'),
-    KAKAOTALK: generateStaticPath('/icons/auth/kakaotalk.png'),
-    GOOGLE: generateStaticPath('/icons/auth/google.png'),
+    APPLE: generateStaticPath('/icons/auth/apple.svg'),
+    NAVER: generateStaticPath('/icons/auth/naver.svg'),
+    KAKAOTALK: generateStaticPath('/icons/auth/kakaotalk.svg'),
+    GOOGLE: generateStaticPath('/icons/auth/google.svg'),
   },
 };

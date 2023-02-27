@@ -17,9 +17,9 @@ const GlobalStyle = createGlobalStyle`
 
   html,
   body,
-  #_next {
+  #__next {
     width: 100%;
-    min-height: 100vh;
+    height: 100%;
     font-size: 62.5%;
   }
 

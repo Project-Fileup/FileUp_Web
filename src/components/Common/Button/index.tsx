@@ -17,7 +17,9 @@ import Spinner from '../Spinner';
 
 type ButtonStyleProps = {
   width?: string;
+  maxWidth?: string;
   height?: string;
+  maxHeight?: string;
   margin?: string;
   padding?: string;
   letterSpacing?: string;
@@ -100,7 +102,9 @@ const Button = ({
 
 const ButtonWrapper = styled.button<ButtonStyleProps>`
   width: ${({ width }) => width};
+  max-width: ${({ maxWidth }) => maxWidth};
   height: ${({ height }) => height};
+  max-height: ${({ maxHeight }) => maxHeight};
   margin: ${({ margin }) => margin};
   padding: ${({ padding }) => padding};
   color: ${({ color }) => color};
