@@ -1,14 +1,16 @@
+import { MouseEventHandler } from 'react';
 import styled from 'styled-components';
+import useStyledTheme from '@/hooks/theme/useStyledTheme';
 import Button from '@/components/Common/Button';
 import Image from '@/components/Common/Image';
 import Text from '@/components/Common/Text';
-import useStyledTheme from '@/hooks/theme/useStyledTheme';
 
 type SocialButtonProps = {
   icon: string;
   text: string;
   color: string;
   backgroundColor: string;
+  onClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 const SocialButton = ({
@@ -16,6 +18,7 @@ const SocialButton = ({
   text,
   color,
   backgroundColor,
+  onClick,
 }: SocialButtonProps) => {
   const {
     fontSize,
@@ -34,6 +37,7 @@ const SocialButton = ({
       position='relative'
       justifyContent='flex-start'
       isLoading={false}
+      onClick={onClick}
     >
       <Image
         src={icon}
