@@ -2,7 +2,7 @@ import axios from 'axios';
 import { Buffer } from 'buffer';
 import dayjs from 'dayjs';
 import { TokenKey } from '@/enums/auth';
-import isServer from '@/utils/isServer';
+import isServer from '@/utils/is-package/isServer';
 import cookie, { CookieOption } from '../cookie';
 
 export type JwtPayload = Record<string, unknown> & {

@@ -6,7 +6,7 @@ const generateStaticPath = (path: string): string => {
     return path;
   }
 
-  return `${dotenv.APP_URL}${path}`;
+  return `${dotenv.WEB_URL}${path}`;
 }
 
 export default generateStaticPath;

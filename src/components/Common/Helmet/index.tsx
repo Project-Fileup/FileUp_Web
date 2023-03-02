@@ -3,7 +3,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import dayjs from 'dayjs';
 import dotenv from '@/libs/dotenv';
-import makeLocationURL from '@/utils/location/makeLocationURL';
+import generateFullURL from '@/utils/location/generateFullURL';
 import isEmpty from '@/utils/is-package/isEmpty';
 
 type HelmetProps = {
@@ -29,7 +29,7 @@ const Helmet = ({
     <Head>
       <link
         rel='canonical'
-        href={makeLocationURL(asPath)}
+        href={generateFullURL(asPath)}
       />
 
       <meta
@@ -59,7 +59,7 @@ const Helmet = ({
 
       <meta
         property='og:url'
-        content={makeLocationURL(asPath)}
+        content={generateFullURL(asPath)}
       />
 
       {
@@ -82,7 +82,7 @@ const Helmet = ({
 
       <meta
         property='twitter:url'
-        content={makeLocationURL(asPath)}
+        content={generateFullURL(asPath)}
       />
 
 			<meta
@@ -112,32 +112,32 @@ const Helmet = ({
 
       <meta
         property='article:pc_url'
-        content={makeLocationURL(asPath)}
+        content={generateFullURL(asPath)}
       />
 
       <meta
         property='article:pc_view_url'
-        content={makeLocationURL(asPath)}
+        content={generateFullURL(asPath)}
       />
 
       <meta
         property='article:pc_service_home'
-        content={dotenv.APP_URL}
+        content={dotenv.WEB_URL}
       />
 
       <meta
         property='article:mobile_url'
-        content={makeLocationURL(asPath)}
+        content={generateFullURL(asPath)}
       />
 
       <meta
         property='article:mobile_view_url'
-        content={makeLocationURL(asPath)}
+        content={generateFullURL(asPath)}
       />
 
       <meta
         property='article:mobile_service_home'
-        content={dotenv.APP_URL}
+        content={dotenv.WEB_URL}
       />
 
       {children}

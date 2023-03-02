@@ -1,4 +1,4 @@
-import generateStaticPath from '@/utils/generateStaticPath';
+import generateStaticPath from '@/utils/assets/generateStaticPath';
 
 export const fontPaths = {
   pretendard: {

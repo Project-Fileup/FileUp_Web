@@ -1,5 +1,5 @@
 import { fonts } from '@/assets/fonts';
-import camelToKebab from '@/utils/camelToKebab';
+import camelToKebab from '@/utils/string/camelToKebab';
 import { fontSize } from '@/styles/fontSize';
 import { device } from './device';
 import { media } from './media';
