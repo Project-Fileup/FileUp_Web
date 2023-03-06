@@ -99,6 +99,18 @@ class MyDocument extends Document {
             crossOrigin=''
           />
 
+          <script
+            defer
+            src='https://developers.kakao.com/sdk/js/kakao.min.js'
+          ></script>
+
+          <script
+            defer
+            type='text/javascript'
+            charSet='UTF-8'
+            src='//t1.daumcdn.net/adfit/static/kp.js'
+          ></script>
+
           <style
             dangerouslySetInnerHTML={{
               __html: fontFamilies,

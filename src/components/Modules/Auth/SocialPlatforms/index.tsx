@@ -3,6 +3,9 @@ import useStyledTheme from '@/hooks/theme/useStyledTheme';
 import { GOOGLE_LOGIN_URL } from '@/libs/models/oauth';
 import Flex from '@/components/Common/Flex';
 import SocialButton from './SocialButton';
+import kakaoSDK from '@/libs/kakao/kakaoSDK';
+import generateFullURL from '@/utils/location/generateFullURL';
+import { pageRoute } from '@/libs/models/route';
 
 type SocialPlatformsProps = {
   type: 'sign-in' | 'sign-up';
@@ -15,10 +18,6 @@ const SocialPlatforms = ({
     color,
   } = useStyledTheme();
 
-  const pushOAuthLink = (link: string): void => {
-    window.open(link);
-  }
-
   return (
     <Flex
       tagName='div'
@@ -30,7 +29,7 @@ const SocialPlatforms = ({
         text={type === 'sign-in' ? '구글 로그인' : '구글로 시작하기'}
         color={color.black}
         backgroundColor={color.google}
-        onClick={() => pushOAuthLink(GOOGLE_LOGIN_URL)}
+        onClick={() => window.open(GOOGLE_LOGIN_URL, '_self')}
       />
 
       <SocialButton
@@ -38,7 +37,7 @@ const SocialPlatforms = ({
         text={type === 'sign-in' ? '애플 로그인' : '애플로 시작하기'}
         color={color.white}
         backgroundColor={color.apple}
-        onClick={() => pushOAuthLink(GOOGLE_LOGIN_URL)}
+        onClick={() => window.open(GOOGLE_LOGIN_URL, '_self')}
       />
 
       <SocialButton
@@ -46,7 +45,7 @@ const SocialPlatforms = ({
         text={type === 'sign-in' ? '카카오 로그인' : '카카오로 시작하기'}
         color={color.black}
         backgroundColor={color.kakao}
-        onClick={() => pushOAuthLink(GOOGLE_LOGIN_URL)}
+        onClick={() => kakaoSDK.authorize(generateFullURL(pageRoute.oauth.KAKAO))}
       />
 
       <SocialButton
@@ -54,7 +53,7 @@ const SocialPlatforms = ({
         text={type === 'sign-in' ? '네이버 로그인' : '네이버로 시작하기'}
         color={color.white}
         backgroundColor={color.naver}
-        onClick={() => pushOAuthLink(GOOGLE_LOGIN_URL)}
+        onClick={() => window.open(GOOGLE_LOGIN_URL, '_self')}
       />
     </Flex>
   );

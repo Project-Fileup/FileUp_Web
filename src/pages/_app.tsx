@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { NextComponentType } from 'next';
 import App, {
   AppContext,
@@ -10,6 +10,8 @@ import {
   QueryClientProvider,
   Hydrate,
 } from '@tanstack/react-query';
+import kakaoSDK from '@/libs/kakao/kakaoSDK';
+import dotenv from '@/libs/dotenv';
 import GlobalStyle from '@/styles/GlobalStyle';
 import { wrapper } from '@/stores/nextStore';
 import StyleProvider from '@/components/Providers/StyleProvider';
@@ -34,6 +36,14 @@ const MyApp: CustomAppComponent = ({
   }));
 
   const dehydrateState = pageProps?.dehydrateState;
+
+  useEffect(() => {
+    if (kakaoSDK.isInitialized()) {
+      return;
+    }
+
+    kakaoSDK.init(dotenv.KAKAO_JS_KEY);
+  }, []);
 
   return (
     <QueryClientProvider

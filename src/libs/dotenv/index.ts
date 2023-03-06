@@ -6,6 +6,8 @@ const dotenv = {
 
   GOOGLE_CLIENT_ID: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID as string,
 
+  KAKAO_JS_KEY: process.env.NEXT_PUBLIC_KAKAO_JS_KEY as string,
+
   DEV_MODE: process.env.NODE_ENV === 'development',
 } as const;
 
